@@ -6,3 +6,45 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Category {
+  id           Int    @id @default(autoincrement())
+  cat_id       Int
+  cat_name_bn  String
+  cat_name_en  String
+  cat_icon     String
+  no_of_subcat Int
+  no_of_dua    Int
+}
+
+model Subcatgory {
+  id             Int    @id @default(autoincrement())
+  cat_id         Int
+  subcat_id      Int
+  subcat_name_bn String
+  subcat_name_en String
+  no_of_dua      Int
+}
+
+model Dua {
+  id                 Int     @id @default(autoincrement())
+  cat_id             Int
+  subcat_id          Int
+  dua_id             Int
+  dua_name_bn        String?
+  dua_name_en        String?
+  top_bn             String?
+  top_en             String?
+  dua_arabic         String?
+  dua_indopack       String?
+  clean_arabic       String?
+  transliteration_bn String?
+  transliteration_en String?
+  translation_bn     String?
+  translation_en     String?
+  bottom_bn          String?
+  bottom_en          String?
+  refference_bn      String?
+  refference_en      String?
+  audio              String?
+}
