@@ -1,18 +1,31 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import prisma from '../../../shared/prisma';
 import { IGenericResponse } from '../../../interfaces/common';
 import { Subcatgory } from '@prisma/client';
+import { ISubcategoryFilters } from './subcategory.const';
 const createSubcategory = async (data: Subcatgory): Promise<Subcatgory> => {
     const result = await prisma.subcatgory.create({ data });
 
     return result;
 };
 
-const getAllSubcategory = async (): Promise<IGenericResponse<Subcatgory[]>> => {
+const getAllSubcategory = async (filters: ISubcategoryFilters): Promise<IGenericResponse<Subcatgory[]>> => {
+
+    const { ...filterData } = filters;
+    const andConditions = [];
+
+    if (filterData.cat_id) andConditions.push({
+        cat_id: {
+            equals: parseInt(filterData.cat_id)
+        }
+    })
+
+    const whereConditions = andConditions.length > 0 ? { AND: andConditions } : {};
+
     const result = await prisma.subcatgory.findMany({
-        // take: 2,
-        // skip: 1,
-        where: {},
+        where: whereConditions,
     });
+
     return {
         meta: {
             limit: 1,

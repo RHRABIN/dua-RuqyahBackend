@@ -1,4 +1,5 @@
 import catchAsync from '../../../shared/carchAsync';
+import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
 import { SubcategoryService } from './subcategory.service';
 
@@ -13,7 +14,8 @@ const createSubcategory = catchAsync(async (req, res) => {
   });
 });
 const getAllSubcategory = catchAsync(async (req, res) => {
-  const result = await SubcategoryService.getAllSubcategory();
+  const filters = pick(req.query, ["cat_id"]);
+  const result = await SubcategoryService.getAllSubcategory(filters);
 
   sendResponse(res, {
     statusCode: 200,
