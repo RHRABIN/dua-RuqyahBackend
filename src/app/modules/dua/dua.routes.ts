@@ -1,8 +1,9 @@
 import express from 'express';
 import { DuaController } from './dua.controller';
+import { upload } from '../../../multer/upload';
 const router = express.Router();
 
-router.post('/', DuaController.createDua);
+router.post('/', upload.single("duaCsv"), DuaController.createDua);
 router.get('/', DuaController.getAllDua);
 router.get('/:id', DuaController.getDua);
 router.patch('/:id', DuaController.updateDua);

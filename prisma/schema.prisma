@@ -36,7 +36,7 @@ model Dua {
   top_bn             String?
   top_en             String?
   dua_arabic         String?
-  dua_indopack       String?
+  dua_indopak        String?
   clean_arabic       String?
   transliteration_bn String?
   transliteration_en String?

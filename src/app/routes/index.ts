@@ -1,22 +1,23 @@
 import express from 'express';
-import { DataRoutes } from '../modules/data/data.routes';
-import { SpecializationRoutes } from '../modules/specialization/specialization.routes';
-import { DoctorsRoutes } from '../modules/doctors/doctors.routes';
+import { CategoryRoutes } from '../modules/category/category.routes';
+import { SubCategoryRoutes } from '../modules/subcategory/subcategory.routes';
+import { DuaRoutes } from '../modules/dua/dua.routes';
+
 
 const router = express.Router();
 const moduleRoutes = [
   //... routes
   {
-    path: '/data',
-    route: DataRoutes,
+    path: '/category',
+    route: CategoryRoutes,
   },
   {
-    path: '/specialization',
-    route: SpecializationRoutes,
+    path: '/subcategory',
+    route: SubCategoryRoutes,
   },
   {
-    path: '/doctor',
-    route: DoctorsRoutes,
+    path: '/dua',
+    route: DuaRoutes,
   },
 ];
 moduleRoutes.forEach(route => router.use(route.path, route.route));

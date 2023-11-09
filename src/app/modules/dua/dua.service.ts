@@ -2,6 +2,9 @@ import { Dua } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 
 const createDua = async (data: Dua): Promise<Dua> => {
+
+
+
     const result = await prisma.dua.create({ data });
 
     return result;
